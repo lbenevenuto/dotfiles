@@ -1,0 +1,25 @@
+alias cl="clear;ls --group-directories-first -lahtF --time-style=\"+%d-%m-%Y %H:%M:%S\" --color"
+alias cls="clear;ls -a --group-directories-first  --time-style=\"+%d-%m-%Y %H:%M:%S\" --color"
+alias vi=vim
+
+alias weboneserver="ssh srvdocker01.centralus.cloudapp.azure.com"
+
+alias sites="ssh ubuntu@54.89.120.244"
+alias sistemas="ssh ubuntu@54.91.73.240"
+alias bancos="ssh ubuntu@54.173.117.89"
+alias srvambev="ssh luiz@13.80.116.171"
+alias ptide="perltidy -b -bext='/' -nt -bl -sbl -l=2000 -act=0 -syn -sfp -isbc"
+alias mongodilma='mongo "mongodb://dilma-shard-00-00-4cqrh.mongodb.net:27017,dilma-shard-00-01-4cqrh.mongodb.net:27017,dilma-shard-00-02-4cqrh.mongodb.net:27017/admin?replicaSet=dilma-shard-0" --ssl --username luiz --password U6gBog6JiOHAVfay'
+alias code="code ."
+alias drmall='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias drmall_untagged='docker rmi $(docker images -aq -f dangling=true)'
+alias dci="clear && docker images"
+alias dupall="sh ~/update-images.sh"
+
+alias websiffra="ssh luiz.benevenuto@35.188.53.25"
+
+alias apu="sudo aptitude update"
+alias apfu="apu && sudo aptitude -yf full-upgrade"
+
+alias sdo='sudo zsh -s'
+alias tailf="tail -f"
