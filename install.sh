@@ -1,11 +1,23 @@
 #!/usr/bin/env bash
 
+# Constants
+black=`tput setaf 0`;
+red=`tput setaf 1`;
+green=`tput setaf 2`;
+yellow=`tput setaf 3`;
+blue=`tput setaf 4`;
+magenta=`tput setaf 5`;
+cyan=`tput setaf 6`;
+white=`tput setaf 7`;
+reset=`tput sgr0`;
+
 if [[ -e $HOME/.dotfiles/.bootstrap ]]; then
 	echo "Bootstrap has been executed already."
 	echo "If you really want to run this again: rm \$HOME/.dotfiles/.bootstrap"
 	exit 0
 fi
 
+echo "${green}Instalando as dependencias${reset}"
 sudo apt-get update && sudo apt-get install -fy \
     apt-transport-https \
     ca-certificates \
@@ -24,10 +36,11 @@ sudo apt-get update && sudo apt-get install -fy \
     #postgresql-client \
     #postgresql-server-dev-all \
 
-echo "Full-Upgrade do sistema"
+echo "${green}Full-Upgrade do sistema${reset}";
 sudo aptitude -fy full-upgrade;
 
 # Install nvm
+echo "${green}Instalando o nvm${reset}";
 export NVM_DIR="$HOME/.nvm" && (
   git clone https://github.com/creationix/nvm.git "$NVM_DIR"
   cd "$NVM_DIR"
@@ -35,17 +48,19 @@ export NVM_DIR="$HOME/.nvm" && (
 ) && . "$NVM_DIR/nvm.sh"
 
 # Install Node-latest
+echo "${green}Instalando o node${reset}";
 nvm install node
 npm install -g \
     npm \
     less
 
 # Install Yarn
+echo "${green}Instalando o Yarn${reset}";
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install -fy yarn
 
-echo "Install PERL modules";
+echo "${green}Install PERL modules${reset}";
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 
 sudo cpanm YAML;
@@ -56,16 +71,17 @@ sudo cpanm YAML;
 #sudo cpanm Date::Calc::XS Cpanel::JSON::XS JSON::XS
 
 # Install oh-my-zsh
+echo "${green}Instalando o oh-my-zsh${reset}";
 chsh -s $(which zsh);
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
 
-echo "Alterando o .zshrc"
+echo "${green}Alterando o .zshrc${reset}";
 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.zshrc
 
 # Install Spaceship theme
-echo "Instalando o spaceship-zsh-theme";
+echo "${green}Instalando o spaceship-zsh-theme${reset}";
 npm install -g spaceship-zsh-theme
 echo 'SPACESHIP_TIME_SHOW=true' >> ~/.zshrc
 echo 'SPACESHIP_BATTERY_SHOW=true' >> ~/.zshrc
@@ -75,15 +91,17 @@ echo 'HIST_STAMPS="dd.mm.yyyy"' >> ~/.zshrc
 echo 'plugins+=(git-flow docker docker-compose perl cpanm common-aliases nvm npm node composer laravel5 redis-cli supervisor ubuntu sudo debian)' >> ~/.zshrc
 
 # linkando os aliases
+echo "${green}Linkando os aliases${reset}";
 ln -s ~/.dotfiles/.aliases ~/.aliases
 echo 'source $HOME/.aliases' >> ~/.zshrc
 echo 'ulimit -n 65536' >> ~/.zshrc
 
 # Setando o vim como editor principal
+echo "${green}Alterando o editor default${reset}";
 sudo update-alternatives --config editor
 
 # instalando Docker
-echo "Instalando o docker"
+echo "${green}Instalando o docker${reset}";
 curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
 sudo apt-get update
@@ -91,21 +109,21 @@ sudo apt-get install -fy docker-ce
 sudo gpasswd -a $USER docker
 
 # instalando o Docker compose
-echo "Instalando o docker compose"
+echo "${green}Instalando o docker compose${reset}";
 sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
 # Cleanup
-echo "${GREEN}Limpando o apt";
+echo "${green}Limpando o apt${reset}";
 sudo apt-get autoremove -y
 
-echo "Reboot?"
+echo "${cyan}Reboot?${reset}"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) sudo init 6; break;;
         No ) exit;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo "${red}Please answer 1 or 2.${reset}";;
     esac
 done
 
