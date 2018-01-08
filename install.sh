@@ -18,11 +18,11 @@ sudo apt-get update && sudo apt-get install -fy \
     git-flow \
     zsh \
     vim \
-    aptitude \
+    aptitude
     #libpg-perl \
     #postgresql-client \
     #postgresql-server-dev-all \
-    ;
+    
 
 # Install nvm
 export NVM_DIR="$HOME/.nvm" && (
