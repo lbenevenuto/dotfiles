@@ -6,9 +6,11 @@ if [[ -e $HOME/.dotfiles/.bootstrap ]]; then
 	exit 0
 fi
 
-sudo apt-get update;
-sudo apt-get install -fy \
+sudo apt-get update && apt-get install -fy \
     apt-transport-https \
+    ca-certificates \
+    gnupg2 \
+    software-properties-common \
     build-essential \
     curl \
     libcurl4-openssl-dev \
@@ -16,10 +18,11 @@ sudo apt-get install -fy \
     git-flow \
     zsh \
     vim \
+    aptitude \
     #libpg-perl \
     #postgresql-client \
     #postgresql-server-dev-all \
-    aptitude;
+    ;
 
 # Install nvm
 export NVM_DIR="$HOME/.nvm" && (
@@ -58,12 +61,40 @@ echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.zshrc
 
-
 # Install Spaceship theme
 echo "Instalando o spaceship-zsh-theme";
 npm install -g spaceship-zsh-theme
+echo 'SPACESHIP_TIME_SHOW=true' >> ~/.zshrc
+echo 'SPACESHIP_BATTERY_SHOW=true' >> ~/.zshrc
+echo 'DISABLE_UPDATE_PROMPT=true' >> ~/.zshrc
+echo 'export UPDATE_ZSH_DAYS=1' >> ~/.zshrc
+echo 'HIST_STAMPS="dd.mm.yyyy"' >> ~/.zshrc
+echo 'plugins+=(git-flow docker docker-compose perl cpanm common-aliases nvm npm node composer laravel5 redis-cli supervisor ubuntu sudo debian)' >> ~/.zshrc
+
+# linkando os aliases
+ln -s ~/.dotfiles/.aliases ~/.aliases
+echo 'source $HOME/.aliases' >> ~/.zshrc
+echo 'ulimit -n 65536' >> ~/.zshrc
+
+# Setando o vim como editor principal
+sudo update-alternatives --config editor
+
+# instalando Docker
+echo "Instalando o docker"
+curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install -fy docker-ce
+gpasswd -a $USER docker
+
+# instalando o Docker compose
+echo "Instalando o docker compose"
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
 
 # Cleanup
+echo "Limpando o apt";
 sudo apt-get autoremove -y
 
 cd ~
