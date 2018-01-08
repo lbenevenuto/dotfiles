@@ -8,6 +8,7 @@ fi
 
 sudo apt-get update;
 sudo apt-get install -fy \
+    apt-transport-https \
     build-essential \
     curl \
     libcurl4-openssl-dev \
