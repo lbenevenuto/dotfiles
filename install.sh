@@ -97,7 +97,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
 # Cleanup
-echo "Limpando o apt";
+echo "${GREEN}Limpando o apt";
 sudo apt-get autoremove -y
 
 echo "Reboot?"
