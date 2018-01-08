@@ -51,13 +51,16 @@ sudo cpanm YAML;
 
 # Install oh-my-zsh
 chsh -s $(which zsh);
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
 
+echo "Alterando o .zshrc"
 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.zshrc
 echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.zshrc
 
+
 # Install Spaceship theme
+echo "Instalando o spaceship-zsh-theme";
 npm install -g spaceship-zsh-theme
 
 # Cleanup
