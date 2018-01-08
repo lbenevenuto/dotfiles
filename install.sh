@@ -19,10 +19,12 @@ sudo apt-get update && sudo apt-get install -fy \
     zsh \
     vim \
     aptitude
+    #gcm
     #libpg-perl \
     #postgresql-client \
     #postgresql-server-dev-all \
 
+echo "Full-Upgrade do sistema"
 sudo aptitude -fy full-upgrade;
 
 # Install nvm
@@ -97,5 +99,14 @@ docker-compose --version
 # Cleanup
 echo "Limpando o apt";
 sudo apt-get autoremove -y
+
+echo "Reboot?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo init 6; break;;
+        No ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 cd ~
