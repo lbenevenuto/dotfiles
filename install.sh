@@ -98,7 +98,9 @@ echo 'ulimit -n 65536' >> ~/.zshrc
 
 # Setando o vim como editor principal
 echo "${green}Alterando o editor default${reset}";
-sudo update-alternatives --config editor
+#sudo update-alternatives --config editor
+echo 'export VISUAL="/usr/bin/vim.basic"' >> ~/.zshrc
+echo 'export EDITOR="$VISUAL"' >> ~/.zshrc
 
 # instalando Docker
 echo "${green}Instalando o docker${reset}";
