@@ -6,7 +6,7 @@ if [[ -e $HOME/.dotfiles/.bootstrap ]]; then
 	exit 0
 fi
 
-sudo apt-get update && apt-get install -fy \
+sudo apt-get update && sudo apt-get install -fy \
     apt-transport-https \
     ca-certificates \
     gnupg2 \
