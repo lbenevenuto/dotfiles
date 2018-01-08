@@ -22,7 +22,8 @@ sudo apt-get update && sudo apt-get install -fy \
     #libpg-perl \
     #postgresql-client \
     #postgresql-server-dev-all \
-    
+
+sudo aptitude -fy full-upgrade;
 
 # Install nvm
 export NVM_DIR="$HOME/.nvm" && (
@@ -85,7 +86,7 @@ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gp
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
 sudo apt-get update
 sudo apt-get install -fy docker-ce
-gpasswd -a $USER docker
+sudo gpasswd -a $USER docker
 
 # instalando o Docker compose
 echo "Instalando o docker compose"
