@@ -30,6 +30,10 @@ sudo apt-get update && sudo apt-get install -fy \
     git-flow \
     zsh \
     vim \
+    pkg-config \
+    autoconf \
+    automake \
+    libtool \
     aptitude
     #gcm
     #libpg-perl \
@@ -58,11 +62,8 @@ export NVM_DIR="$HOME/.nvm" && (
 ) && . "$NVM_DIR/nvm.sh"
 
 # Install Node-latest
-echo "${green}Instalando o node${reset}";
-nvm install node
-npm install -g \
-    npm \
-    less
+echo "${green}Instalando o node e latest npm${reset}";
+nvm install node --latest-npm
 
 # Install Yarn
 echo "${green}Instalando o Yarn${reset}";
@@ -127,6 +128,17 @@ echo "${green}Instalando o docker compose${reset}";
 sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
+
+# Instalando o mozjpeg
+echo "${green}Instalando o mozjpeg${reset}";
+git clone git@github.com:mozilla/mozjpeg.git /tmp/mozjpeg
+cd /tmp/mozjpeg
+git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
+autoreconf -fiv
+./configure
+make all
+make test
+make install
 
 # Cleanup
 echo "${green}Limpando o apt${reset}";
