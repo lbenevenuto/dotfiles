@@ -42,9 +42,19 @@ sudo aptitude -fy full-upgrade;
 # Install nvm
 echo "${green}Instalando o nvm${reset}";
 export NVM_DIR="$HOME/.nvm" && (
-  git clone https://github.com/creationix/nvm.git "$NVM_DIR"
-  cd "$NVM_DIR"
-  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
+    git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+    cd "$NVM_DIR"
+    #git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
+
+    # Get new tags from remote
+    git fetch --tags
+
+    # Get latest tag name
+    latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+
+    # Checkout latest tag
+    git checkout $latestTag
+
 ) && . "$NVM_DIR/nvm.sh"
 
 # Install Node-latest
