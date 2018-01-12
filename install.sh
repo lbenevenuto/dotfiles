@@ -101,8 +101,8 @@ echo "${green}Alterando o editor default${reset}";
 #sudo update-alternatives --config editor
 echo 'export VISUAL="/usr/bin/vim.basic"' >> ~/.zshrc
 echo 'export EDITOR="$VISUAL"' >> ~/.zshrc
-echo "echo 'export VISUAL="/usr/bin/vim.basic"' >> /etc/bash.bashrc" | sudo sh
-echo "echo 'export EDITOR="/usr/bin/vim.basic"' >> /etc/bash.bashrc" | sudo sh
+echo "echo 'export VISUAL=\"/usr/bin/vim.basic\"' >> /etc/bash.bashrc" | sudo sh
+echo "echo 'export EDITOR=\"$VISUAL\"' >> /etc/bash.bashrc" | sudo sh
 
 # instalando Docker
 echo "${green}Instalando o docker${reset}";
