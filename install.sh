@@ -128,6 +128,11 @@ echo "${green}Instalando o docker compose${reset}";
 sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
+sudo docker pull alpine
+
+# linkando os update all images
+echo "${green}Linkando o update all docker images${reset}";
+ln -s ~/.dotfiles/update-docker-images.sh ~/update-images.sh
 
 # Instalando o mozjpeg
 echo "${green}Instalando o mozjpeg${reset}";
