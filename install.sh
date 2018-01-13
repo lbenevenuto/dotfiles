@@ -35,7 +35,7 @@ sudo apt-get update && sudo apt-get install -fy \
     automake \
     libtool \
     nasm \
-    zram-config \
+    #zram-config \
     aptitude
     #gcm
     #libpg-perl \
