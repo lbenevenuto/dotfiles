@@ -9,7 +9,6 @@ alias sistemas="ssh ubuntu@54.91.73.240"
 alias bancos="ssh ubuntu@54.173.117.89"
 alias srvambev="ssh luiz@13.80.116.171"
 alias ptide="perltidy -b -bext='/' -nt -bl -sbl -l=2000 -act=0 -syn -sfp -isbc"
-alias mongodilma='mongo "mongodb://dilma-shard-00-00-4cqrh.mongodb.net:27017,dilma-shard-00-01-4cqrh.mongodb.net:27017,dilma-shard-00-02-4cqrh.mongodb.net:27017/admin?replicaSet=dilma-shard-0" --ssl --username luiz --password U6gBog6JiOHAVfay'
 alias code="code ."
 alias drmall='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias drmall_untagged='docker rmi $(docker images -aq -f dangling=true)'
