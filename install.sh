@@ -143,7 +143,7 @@ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
 autoreconf -fiv
 ./configure
 make all
-make test
+#make test
 make install
 
 # Cleanup
