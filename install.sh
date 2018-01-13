@@ -144,7 +144,7 @@ autoreconf -fiv
 ./configure
 make all
 #make test
-make install
+sudo make install
 
 # Cleanup
 echo "${green}Limpando o apt${reset}";
