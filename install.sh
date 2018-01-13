@@ -34,6 +34,7 @@ sudo apt-get update && sudo apt-get install -fy \
     autoconf \
     automake \
     libtool \
+    nasm \
     aptitude
     #gcm
     #libpg-perl \
