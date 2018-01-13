@@ -101,7 +101,9 @@ echo 'SPACESHIP_BATTERY_SHOW=true' >> ~/.zshrc
 echo 'DISABLE_UPDATE_PROMPT=true' >> ~/.zshrc
 echo 'export UPDATE_ZSH_DAYS=1' >> ~/.zshrc
 echo 'HIST_STAMPS="dd.mm.yyyy"' >> ~/.zshrc
-echo 'plugins+=(git-flow docker docker-compose perl cpanm common-aliases nvm npm node composer laravel5 redis-cli supervisor ubuntu sudo debian)' >> ~/.zshrc
+# Colocando os plugins no lugar certo
+sed --follow-symlinks -i -e "s/\(source \$ZSH\/oh-my-zsh.sh\)/plugins\+\=\(git-flow docker docker-compose perl cpanm common-aliases nvm npm node composer laravel5 redis-cli supervisor ubuntu sudo debian\)\n\1/" ~/.zshrc
+#echo 'plugins+=(git-flow docker docker-compose perl cpanm common-aliases nvm npm node composer laravel5 redis-cli supervisor ubuntu sudo debian)' >> ~/.zshrc
 
 # linkando os aliases
 echo "${green}Linkando os aliases${reset}";
