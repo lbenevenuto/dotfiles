@@ -39,12 +39,7 @@ sudo apt-get update && sudo apt-get install -fy \
     libtool \
     nasm \
     zip unzip bzip2 \
-    #zram-config \
-    aptitude
-    #gcm
-    #libpg-perl \
-    #postgresql-client \
-    #postgresql-server-dev-all \
+    aptitude;
 
 echo "${green}Full-Upgrade do sistema${reset}";
 sudo aptitude -fy full-upgrade;
