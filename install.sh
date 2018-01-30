@@ -162,7 +162,7 @@ select yn in "Yes" "No"; do
     case $yn in
         Yes ) sudo init 6; break;;
         No ) exit;;
-        * ) echo "${red}Please answer 1 or 2.${reset}";;
+        # * ) echo "${red}Please answer 1 or 2.${reset}";;
     esac
 done
 
