@@ -19,6 +19,9 @@ fi
 
 echo "${green}Instalando as dependencias${reset}"
 sudo apt-get update && sudo apt-get install -fy \
+    ntp \
+    ssh \
+    openssl \
     apt-transport-https \
     ca-certificates \
     gnupg2 \
@@ -35,6 +38,7 @@ sudo apt-get update && sudo apt-get install -fy \
     automake \
     libtool \
     nasm \
+    zip unzip bzip2 \
     #zram-config \
     aptitude
     #gcm

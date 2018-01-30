@@ -37,3 +37,7 @@ for image in $(docker images --format "{{.Repository}}:{{.Tag}}"); do
     docker pull $image
 done
 
+echo "${green}Removing all untagged images${reset}"
+for container in $(docker images -aq -f dangling=true); do
+    docker rmi $container
+done
