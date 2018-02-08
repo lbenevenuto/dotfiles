@@ -76,11 +76,11 @@ echo "${green}Install PERL modules${reset}";
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 
 sudo cpanm YAML;
-#sudo cpanm Log::Log4perl Log::Dispatch::Email::MailSend JSON::Parse File::Slurp Benchmark Modern::Perl common::sense DDP MIME::Lite DBI;
-#sudo cpanm JSON Net::SFTP Net::FTP Spreadsheet::XLSX Spreadsheet::ParseXLSX List::Util;
-#sudo cpanm Digest::MD5 DateTime Date::Parse Text::Soundex Net::Curl;
-#sudo cpanm YADA WWW::UserAgent::Random File::Listing DBD::Pg JSON::Any Locale::Currency::Format Date::Calc;
-#sudo cpanm Date::Calc::XS Cpanel::JSON::XS JSON::XS
+sudo cpanm Log::Log4perl Log::Dispatch::Email::MailSend JSON::Parse File::Slurp Benchmark Modern::Perl common::sense DDP MIME::Lite DBI;
+sudo cpanm JSON Net::SFTP Net::FTP Spreadsheet::XLSX Spreadsheet::ParseXLSX List::Util;
+sudo cpanm Digest::MD5 DateTime Date::Parse Text::Soundex Net::Curl;
+sudo cpanm YADA WWW::UserAgent::Random File::Listing DBD::Pg JSON::Any Locale::Currency::Format Date::Calc;
+sudo cpanm Date::Calc::XS Cpanel::JSON::XS JSON::XS
 
 # Install oh-my-zsh
 echo "${green}Instalando o oh-my-zsh${reset}";
@@ -136,6 +136,10 @@ sudo docker pull alpine
 # linkando os update all images
 echo "${green}Linkando o update all docker images${reset}";
 ln -s ~/.dotfiles/update-docker-images.sh ~/update-images.sh
+
+# linkando as configuracoes de perltidyrc
+echo "${green}Linkando perltidyrc${reset}";
+ln -s ~/.dotfiles/.perltidyrc ~/.perltidyrc
 
 # Instalando o mozjpeg
 echo "${green}Instalando o mozjpeg${reset}";
