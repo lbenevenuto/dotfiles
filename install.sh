@@ -126,6 +126,11 @@ echo 'export EDITOR="vim"' >> ~/.zshrc
 echo "echo 'export VISUAL=\"vim\"' >> /etc/bash.bashrc" | sudo sh
 echo "echo 'export EDITOR=\"vim\"' >> /etc/bash.bashrc" | sudo sh
 
+# Configuracoes do VIM
+echo "${green}Configuracoes do VIM${reset}";
+echo "echo 'set nowrap' >> /etc/vim/vimrc" | sudo sh
+echo "echo 'set hlsearch' >> /etc/vim/vimrc" | sudo sh
+
 # instalando Docker
 echo "${green}Instalando o docker${reset}";
 curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
