@@ -72,6 +72,10 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install -fy yarn
 
+echo "${green}Install CPAN${reset}";
+export PERL_MM_USE_DEFAULT=1;
+sudo cpan;
+
 echo "${green}Install PERL modules${reset}";
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 
