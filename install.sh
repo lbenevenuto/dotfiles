@@ -135,8 +135,8 @@ sudo apt-get install -fy docker-ce
 sudo gpasswd -a $USER docker
 
 # instalando o Docker compose
-echo "${green}Instalando o docker compose${reset}";
 compose_version=`curl -sLo /dev/null -w '%{url_effective}' https://github.com/docker/compose/releases/latest |  grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}'`;
+echo "${green}Instalando o docker compose version ${cyan}${compose_version}${reset}";
 sudo curl -L https://github.com/docker/compose/releases/download/${compose_version}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
