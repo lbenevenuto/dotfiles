@@ -76,11 +76,15 @@ echo "${green}Install PERL modules${reset}";
 curl -L https://cpanmin.us | perl - --sudo App::cpanminus
 
 sudo cpanm YAML;
-sudo cpanm Log::Log4perl Log::Dispatch::Email::MailSend JSON::Parse File::Slurp Benchmark Modern::Perl common::sense DDP MIME::Lite DBI;
+sudo cpanm Log::Log4perl Log::Dispatch::Email::MailSend JSON::Parse File::Slurp Benchmark Modern::Perl;
+sudo cpanm common::sense DDP MIME::Lite DBI;
 sudo cpanm JSON Net::SFTP Net::FTP Spreadsheet::XLSX Spreadsheet::ParseXLSX List::Util;
 sudo cpanm Digest::MD5 DateTime Date::Parse Text::Soundex Net::Curl;
 sudo cpanm YADA WWW::UserAgent::Random File::Listing DBD::Pg JSON::Any Locale::Currency::Format Date::Calc;
-sudo cpanm Date::Calc::XS Cpanel::JSON::XS JSON::XS
+sudo cpanm Date::Calc::XS Cpanel::JSON::XS JSON::XS;
+sudo cpanm File::Path String::Similarity File::Basename Scalar::Util POSIX;
+sudo cpanm utf8 encode;
+sudo cpanm CPAN;
 
 # Install oh-my-zsh
 echo "${green}Instalando o oh-my-zsh${reset}";
@@ -110,6 +114,10 @@ ln -s ~/.dotfiles/.aliases ~/.aliases
 echo 'source $HOME/.aliases' >> ~/.zshrc
 echo 'ulimit -n 65536' >> ~/.zshrc
 
+# linkando as configuracoes do perltidyrc
+echo "${green}Linkando perltidyrc${reset}";
+ln -s ~/.dotfiles/.perltidyrc ~/.perltidyrc
+
 # Setando o vim como editor principal
 echo "${green}Alterando o editor default${reset}";
 #sudo update-alternatives --config editor
@@ -128,18 +136,15 @@ sudo gpasswd -a $USER docker
 
 # instalando o Docker compose
 echo "${green}Instalando o docker compose${reset}";
-sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+compose_version=`curl -sLo /dev/null -w '%{url_effective}' https://github.com/docker/compose/releases/latest |  grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}'`;
+sudo curl -L https://github.com/docker/compose/releases/download/${compose_version}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 sudo docker pull alpine
 
-# linkando os update all images
+# linkando o update all images
 echo "${green}Linkando o update all docker images${reset}";
 ln -s ~/.dotfiles/update-docker-images.sh ~/update-images.sh
-
-# linkando as configuracoes de perltidyrc
-echo "${green}Linkando perltidyrc${reset}";
-ln -s ~/.dotfiles/.perltidyrc ~/.perltidyrc
 
 # Instalando o mozjpeg
 echo "${green}Instalando o mozjpeg${reset}";
